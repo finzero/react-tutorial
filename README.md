@@ -20,3 +20,5 @@ Jalankan Aplikasi
 ```sh
 yarn dev
 ```
+
+buka aplikasi pada browser http://localhost:5173/
