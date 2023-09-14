@@ -47,6 +47,7 @@ const UseEffect = () => {
 
   // akan di jalankan ketika sebuah component di load
   useEffect(() => {
+    // update state dari countTodo sesuai jumlah data todoList
     setCountTodo(todoList.length);
   }, [todoList]);
 

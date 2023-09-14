@@ -2,6 +2,7 @@ import { Checkbox, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 
+// styling untuk element li
 // eslint-disable-next-line react/prop-types
 const StyledList = ({ children }) => {
   return (
@@ -16,11 +17,13 @@ const StyledList = ({ children }) => {
   );
 };
 
+// style variable untuk element ul
 const ulStyle = {
   paddingLeft: 0,
 };
 
 const UseState = () => {
+  // buat state untuk todoList
   const [todoList, setTodoList] = useState([
     { id: 1, label: 'Belanja ke Pasar', done: false },
     { id: 2, label: 'Memasak', done: false },
@@ -29,6 +32,7 @@ const UseState = () => {
     { id: 5, label: 'Mandi Sore', done: false },
   ]);
 
+  // function untuk handle check / uncheck
   const handleToggle = (id) => {
     console.log('handle toggle', id);
     setTodoList((todo) => {
@@ -39,14 +43,15 @@ const UseState = () => {
     });
   };
 
+  // function untuk handle delete todoList
   const handleDelete = (id) => {
     console.log('handle delete', id);
     setTodoList((todo) => todo.filter((td) => td.id !== id));
   };
 
   return (
-    // ❌ untuk style sebaiknya konsisten
-    // gunakan variable, class ataupun styled component secara konsisten
+    // ❌ untuk style sebaiknya konsisten,
+    // tidak dicampur antara styledComponent, style variable atau inline
     <div style={{ width: '500px' }}>
       <ul style={ulStyle}>
         {todoList.map((todo) => (
