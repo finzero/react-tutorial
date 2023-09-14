@@ -5,7 +5,7 @@
 clone repository ke local
 
 ```sh
-git clone
+git clone https://github.com/finzero/react-tutorial.git
 ```
 
 Ganti ke direktori root aplikasi & install semua dependensi
