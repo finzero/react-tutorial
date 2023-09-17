@@ -1,4 +1,4 @@
-import { Checkbox, IconButton } from '@mui/material';
+import { Alert, Checkbox, IconButton, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 
@@ -32,6 +32,8 @@ const UseState = () => {
     { id: 5, label: 'Mandi Sore', done: false },
   ]);
 
+  const [nama, setNama] = useState('');
+
   // function untuk handle check / uncheck
   const handleToggle = (id) => {
     console.log('handle toggle', id);
@@ -50,30 +52,42 @@ const UseState = () => {
   };
 
   return (
-    // ❌ untuk style sebaiknya konsisten,
-    // tidak dicampur antara styledComponent, style variable atau inline
-    <div style={{ width: '500px' }}>
-      <ul style={ulStyle}>
-        {todoList.map((todo) => (
-          <StyledList key={todo.id}>
-            <div>
-              <Checkbox
-                checked={todo.done}
-                onChange={() => handleToggle(todo.id)}
-              />
-              {todo.label}
-            </div>
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              onClick={() => handleDelete(todo.id)}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </StyledList>
-        ))}
-      </ul>
-    </div>
+    <>
+      <p>
+        <b>useState</b> di gunakan untuk membuat state di function komponen.
+      </p>
+      <div style={{ width: '500px' }}>
+        <ul style={ulStyle}>
+          {todoList.map((todo) => (
+            <StyledList key={todo.id}>
+              <div>
+                <Checkbox
+                  checked={todo.done}
+                  onChange={() => handleToggle(todo.id)}
+                />
+                {todo.label}
+              </div>
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => handleDelete(todo.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </StyledList>
+          ))}
+        </ul>
+      </div>
+      <Alert severity="success">Contoh Controlled Input dengan use State</Alert>
+      <TextField
+        id="outlined-basic"
+        label="Nama"
+        variant="outlined"
+        value={nama}
+        onChange={(e) => setNama(e.target.value)}
+      />
+      <div>Nama saya adalah: {nama}</div>
+    </>
   );
 };
 

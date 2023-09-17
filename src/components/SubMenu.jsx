@@ -13,6 +13,11 @@ const hookMenu = [
     link: '/useEffect',
     active: false,
   },
+  {
+    label: 'Use Ref',
+    link: '/useRef',
+    active: false,
+  },
 ];
 const typographyStyle = {
   minWidth: 100,

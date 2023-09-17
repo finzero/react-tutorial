@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import UseState from './pages/UseState';
 import UseEffect from './pages/UseEffect';
+import UseRef from './pages/UseRef';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: '/useEffect',
         element: <UseEffect />,
+      },
+      {
+        path: '/useRef',
+        element: <UseRef />,
       },
     ],
   },

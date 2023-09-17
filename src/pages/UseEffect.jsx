@@ -66,29 +66,36 @@ const UseEffect = () => {
   return (
     // ❌ untuk style sebaiknya konsisten
     // gunakan variable, class ataupun styled component secara konsisten
-    <div style={{ width: '500px' }}>
-      <ul style={ulStyle}>
-        {todoList.map((todo) => (
-          <StyledList key={todo.id}>
-            <div>
-              <Checkbox
-                checked={todo.done}
-                onChange={() => handleToggle(todo.id)}
-              />
-              {todo.label}
-            </div>
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              onClick={() => handleDelete(todo.id)}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </StyledList>
-        ))}
-      </ul>
-      Jumlah Todo: {countTodo}
-    </div>
+    <>
+      <p>
+        <b>useEffect</b> digunakan untuk menambahkan side effect ke function
+        komponen.
+      </p>
+      <div style={{ width: '500px' }}>
+        <ul style={ulStyle}>
+          {todoList.map((todo) => (
+            <StyledList key={todo.id}>
+              <div>
+                <Checkbox
+                  checked={todo.done}
+                  onChange={() => handleToggle(todo.id)}
+                />
+                {todo.label}
+              </div>
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => handleDelete(todo.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </StyledList>
+          ))}
+        </ul>
+        ❗jumlah todo di dibawah dihandle menggunakan useEffect: Jumlah Todo:{' '}
+        {countTodo}
+      </div>
+    </>
   );
 };
 
