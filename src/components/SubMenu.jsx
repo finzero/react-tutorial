@@ -18,6 +18,11 @@ const hookMenu = [
     link: '/useRef',
     active: false,
   },
+  {
+    label: 'Use Context',
+    link: '/useContext',
+    active: false,
+  },
 ];
 const typographyStyle = {
   minWidth: 100,
