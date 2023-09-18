@@ -1,26 +1,7 @@
-import { Alert, Checkbox, IconButton, TextField } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-
-// styling untuk element li
-// eslint-disable-next-line react/prop-types
-const StyledList = ({ children }) => {
-  return (
-    <li
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      {children}
-    </li>
-  );
-};
-
-// style variable untuk element ul
-const ulStyle = {
-  paddingLeft: 0,
-};
+import HighlightSyntax from '../components/HighlightSyntax/HighlightSyntax';
 
 const UseState = () => {
   // buat state untuk todoList
@@ -32,11 +13,8 @@ const UseState = () => {
     { id: 5, label: 'Mandi Sore', done: false },
   ]);
 
-  const [nama, setNama] = useState('');
-
   // function untuk handle check / uncheck
   const handleToggle = (id) => {
-    console.log('handle toggle', id);
     setTodoList((todo) => {
       return todo.map((td) => ({
         ...td,
@@ -47,47 +25,55 @@ const UseState = () => {
 
   // function untuk handle delete todoList
   const handleDelete = (id) => {
-    console.log('handle delete', id);
     setTodoList((todo) => todo.filter((td) => td.id !== id));
   };
 
   return (
-    <>
-      <p>
+    <div>
+      <div className="alert alert-primary" role="alert">
         <b>useState</b> di gunakan untuk membuat state di function komponen.
-      </p>
-      <div style={{ width: '500px' }}>
-        <ul style={ulStyle}>
-          {todoList.map((todo) => (
-            <StyledList key={todo.id}>
-              <div>
-                <Checkbox
-                  checked={todo.done}
-                  onChange={() => handleToggle(todo.id)}
-                />
-                {todo.label}
-              </div>
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={() => handleDelete(todo.id)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </StyledList>
-          ))}
-        </ul>
       </div>
-      <Alert severity="success">Contoh Controlled Input dengan use State</Alert>
-      <TextField
-        id="outlined-basic"
-        label="Nama"
-        variant="outlined"
-        value={nama}
-        onChange={(e) => setNama(e.target.value)}
-      />
-      <div>Nama saya adalah: {nama}</div>
-    </>
+      <div className="row">
+        <div className="col-6">
+          <table className="table table-bordered">
+            <thead className="bg-dark text-white">
+              <tr>
+                <th>To Do List</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {todoList.map((todo) => (
+                <tr key={todo.id}>
+                  <td>
+                    <div className="form-group form-check mb-0">
+                      <input
+                        type="checkbox"
+                        name="todo"
+                        className="form-check-input"
+                        onChange={() => handleToggle(todo.id)}
+                      />
+                      <label className="form-check-label">{todo.label}</label>
+                    </div>
+                  </td>
+                  <td className="text-center">
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => handleDelete(todo.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="col-6">
+          <HighlightSyntax lang={'javascript'}>
+            {JSON.stringify(todoList)}
+          </HighlightSyntax>
+        </div>
+      </div>
+    </div>
   );
 };
 

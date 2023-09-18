@@ -1,0 +1,38 @@
+.syntax-container {
+  max-height: 800px;
+  overflow-y: auto;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 5px 0;
+  background: black;
+}
+
+.syntax-head {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 30px;
+}
+
+.syntax-head img {
+  position: absolute;
+  top: 5px;
+  cursor: pointer;
+}
+
+.syntax-head img.left {
+  left: 5px;
+}
+
+.syntax-head img.right {
+  right: 5px;
+}
+
+.syntax-title {
+  font-weight: 700;
+  color: #fff;
+}
+
+img {
+  max-width: 100%!important;
+}
