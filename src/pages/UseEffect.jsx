@@ -1,24 +1,7 @@
-import { Checkbox, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useState, useEffect } from 'react';
-
-// eslint-disable-next-line react/prop-types
-const StyledList = ({ children }) => {
-  return (
-    <li
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      {children}
-    </li>
-  );
-};
-
-const ulStyle = {
-  paddingLeft: 0,
-};
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import HighlightSyntax from '../components/HighlightSyntax/HighlightSyntax';
 
 const UseEffect = () => {
   const [todoList, setTodoList] = useState([
@@ -59,43 +42,56 @@ const UseEffect = () => {
   });
 
   const handleDelete = (id) => {
-    console.log('handle delete', id);
     setTodoList((todo) => todo.filter((td) => td.id !== id));
   };
 
   return (
-    // ❌ untuk style sebaiknya konsisten
-    // gunakan variable, class ataupun styled component secara konsisten
-    <>
-      <p>
-        <b>useEffect</b> digunakan untuk menambahkan side effect ke function
-        komponen.
-      </p>
-      <div style={{ width: '500px' }}>
-        <ul style={ulStyle}>
-          {todoList.map((todo) => (
-            <StyledList key={todo.id}>
-              <div>
-                <Checkbox
-                  checked={todo.done}
-                  onChange={() => handleToggle(todo.id)}
-                />
-                {todo.label}
-              </div>
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={() => handleDelete(todo.id)}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </StyledList>
-          ))}
-        </ul>
-        ❗jumlah todo di dibawah dihandle menggunakan useEffect: Jumlah Todo:{' '}
-        {countTodo}
+    <div>
+      <div className="alert alert-primary" role="alert">
+        <b>useEffect</b> digunakan untuk menghandle side effect dari sebuah
+        state
       </div>
-    </>
+      <div className="row">
+        <div className="col-6">
+          <table className="table table-bordered">
+            <thead className="bg-dark text-white">
+              <tr>
+                <th>To Do List ({countTodo})</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {todoList.map((todo) => (
+                <tr key={todo.id}>
+                  <td>
+                    <div className="form-group form-check mb-0">
+                      <input
+                        type="checkbox"
+                        name="todo"
+                        className="form-check-input"
+                        onChange={() => handleToggle(todo.id)}
+                      />
+                      <label className="form-check-label">{todo.label}</label>
+                    </div>
+                  </td>
+                  <td className="text-center">
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => handleDelete(todo.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="col-6">
+          <HighlightSyntax lang={'javascript'}>
+            {JSON.stringify(todoList)}
+          </HighlightSyntax>
+        </div>
+      </div>
+    </div>
   );
 };
 
