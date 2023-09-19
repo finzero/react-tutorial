@@ -47,7 +47,7 @@ const UseReducer = () => {
   return (
     <div>
       <div className="alert alert-primary" role="alert">
-        <b>useState</b> di gunakan mengelola state pada sebuah komponen.
+        <b>useReducer</b> di gunakan mengelola state pada sebuah komponen.
       </div>
       <div className="row">
         <div className="col-6">
