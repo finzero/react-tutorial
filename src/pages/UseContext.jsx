@@ -35,7 +35,15 @@ const Parent = () => {
 };
 
 const UseContext = () => {
-  return <Parent />;
+  return (
+    <>
+      <div className="alert alert-primary" role="alert">
+        <b>useContext</b> adalah salah satu hook react yang digunakan untuk
+        berbagi data antar komponen
+      </div>
+      <Parent />
+    </>
+  );
 };
 
 export default UseContext;

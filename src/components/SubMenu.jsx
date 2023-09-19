@@ -23,6 +23,11 @@ const hookMenu = [
     link: '/useContext',
     active: false,
   },
+  {
+    label: 'Use Reducer',
+    link: '/useReducer',
+    active: false,
+  },
 ];
 const typographyStyle = {
   minWidth: 100,
