@@ -1,13 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
+import { useRef, useReducer } from 'react';
 import HighlightSyntax from '../components/HighlightSyntax/HighlightSyntax';
+import todoReducer from '../reducer/todoReducer';
 
 const UseReducer = () => {
-  const inputTodo = useRef();
-
-  // buat state untuk todoList
-  const [todoList, setTodoList] = useState([
+  const [todoList, dispatch] = useReducer(todoReducer, [
     { id: 1, label: 'Belanja ke Pasar', done: false },
     { id: 2, label: 'Memasak', done: false },
     { id: 3, label: 'Mengepel', done: false },
@@ -15,39 +13,48 @@ const UseReducer = () => {
     { id: 5, label: 'Mandi Sore', done: false },
   ]);
 
+  const inputTodo = useRef();
+
   // function to handle add new todo
   const handleAdd = () => {
-    setTodoList([
-      ...todoList,
-      {
+    dispatch({
+      type: 'add',
+      data: {
         id: todoList[todoList.length - 1].id + 1,
         label: inputTodo.current.value,
+        done: false,
       },
-    ]);
+    });
     // Clear Value and focus on input
     inputTodo.current.value = '';
-    inputTodo.focus();
-  };
-
-  // function untuk handle check / uncheck
-  const handleToggle = (id) => {
-    setTodoList((todo) => {
-      return todo.map((td) => ({
-        ...td,
-        done: td.id === id ? !td.done : td.done,
-      }));
-    });
-  };
-
-  // function untuk handle delete todoList
-  const handleDelete = (id) => {
-    setTodoList((todo) => todo.filter((td) => td.id !== id));
+    inputTodo.current.focus();
   };
 
   return (
     <div>
       <div className="alert alert-primary" role="alert">
         <b>useReducer</b> di gunakan mengelola state pada sebuah komponen.
+        <p>
+          <a
+            className="btn btn-primary"
+            data-toggle="collapse"
+            href="#benefitUseReducer"
+            role="button"
+            aria-expanded="false"
+            aria-controls="benefitUseReducer"
+          >
+            Kegunaan dari UseReducer
+          </a>
+        </p>
+        <div className="collapse" id="benefitUseReducer">
+          <div className="card card-body">
+            <ol>
+              <li>Pengelolaan State yang Rumit</li>
+              <li>Pengelolaan Logic State yang Rumit</li>
+              <li>Pemisahan antara kode logic dengan presentational</li>
+            </ol>
+          </div>
+        </div>
       </div>
       <div className="row">
         <div className="col-6">
@@ -80,7 +87,9 @@ const UseReducer = () => {
                         type="checkbox"
                         name="todo"
                         className="form-check-input"
-                        onChange={() => handleToggle(todo.id)}
+                        onChange={() =>
+                          dispatch({ type: 'toggle', id: todo.id })
+                        }
                       />
                       <label className="form-check-label">{todo.label}</label>
                     </div>
@@ -88,7 +97,7 @@ const UseReducer = () => {
                   <td className="text-center">
                     <FontAwesomeIcon
                       icon={faTrash}
-                      onClick={() => handleDelete(todo.id)}
+                      onClick={() => dispatch({ type: 'delete', id: todo.id })}
                     />
                   </td>
                 </tr>

@@ -11,7 +11,6 @@ const UseEffect = () => {
     { id: 4, label: 'Tidur Siang', done: false },
     { id: 5, label: 'Mandi Sore', done: false },
   ]);
-  const [countTodo, setCountTodo] = useState(todoList.length);
 
   const handleToggle = (id) => {
     console.log('handle toggle', id);
@@ -28,10 +27,9 @@ const UseEffect = () => {
     console.log('component di load');
   }, []);
 
-  // akan di jalankan ketika sebuah component di load
+  // akan di jalankan ketika nilai dari todoList berubah
   useEffect(() => {
-    // update state dari countTodo sesuai jumlah data todoList
-    setCountTodo(todoList.length);
+    console.log('todolist berubah, lakukan sesuatu');
   }, [todoList]);
 
   // akan di jalankan ketika sebuah component di load
@@ -56,7 +54,7 @@ const UseEffect = () => {
           <table className="table table-bordered">
             <thead className="bg-dark text-white">
               <tr>
-                <th>To Do List ({countTodo})</th>
+                <th>To Do List ({todoList.length})</th>
                 <th></th>
               </tr>
             </thead>
