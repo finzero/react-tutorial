@@ -2,8 +2,13 @@ import { Container } from '@mui/material';
 import ResponsiveAppBar from './components/ResponsiveAppBar';
 import SubMenu from './components/SubMenu';
 import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    console.log('ini App.jsx');
+  }, []);
+
   return (
     <Container maxWidth={false} disableGutters>
       <ResponsiveAppBar />

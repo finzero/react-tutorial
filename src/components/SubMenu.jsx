@@ -28,6 +28,16 @@ const hookMenu = [
     link: '/useReducer',
     active: false,
   },
+  {
+    label: 'Page baru',
+    link: '/page-baru',
+    active: false,
+  },
+  {
+    label: 'Custom Hook',
+    link: '/custom-hook',
+    active: false,
+  },
 ];
 const typographyStyle = {
   minWidth: 100,
